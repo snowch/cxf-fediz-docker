@@ -9,19 +9,19 @@ WORKDIR	/tmp
 # Download binaries & checksums
 RUN		curl -sS http://central.maven.org/maven2/org/hsqldb/hsqldb/2.3.4/hsqldb-2.3.4.jar > hsqldb-2.3.4.jar && \
 		curl -sS http://central.maven.org/maven2/org/hsqldb/hsqldb/2.3.4/hsqldb-2.3.4.jar.md5 > hsqldb-2.3.4.jar.md5 && \
-		curl -sS https://www-us.apache.org/dist/cxf/fediz/1.2.3/apache-fediz-1.2.3.zip > apache-fediz-1.2.3.zip && \
-		curl -sS https://www-us.apache.org/dist/cxf/fediz/1.2.3/apache-fediz-1.2.3.zip.md5 > apache-fediz-1.2.3.zip.md5
+		curl -sS https://www-us.apache.org/dist/cxf/fediz/1.2.4/apache-fediz-1.2.4.zip > apache-fediz-1.2.4.zip && \
+		curl -sS https://www-us.apache.org/dist/cxf/fediz/1.2.4/apache-fediz-1.2.4.zip.md5 > apache-fediz-1.2.4.zip.md5
 
 # checksum & unzip
 RUN		echo "`cat hsqldb-2.3.4.jar.md5`  hsqldb-2.3.4.jar" | md5sum -c - && \
-		echo "`cat apache-fediz-1.2.3.zip.md5`  apache-fediz-1.2.3.zip" | md5sum -c - && \
-		unzip apache-fediz-1.2.3.zip
+		echo "`cat apache-fediz-1.2.4.zip.md5`  apache-fediz-1.2.4.zip" | md5sum -c - && \
+		unzip apache-fediz-1.2.4.zip
 
 # move hsqldb driver
 RUN		mv hsqldb-2.3.4.jar	/usr/local/tomcat/lib/
 
 # set work dir
-WORKDIR	/tmp/apache-fediz-1.2.3/idp/
+WORKDIR	/tmp/apache-fediz-1.2.4/idp/
 
 # move WAR files
 RUN		mv war/fediz-idp-sts.war /usr/local/tomcat/webapps && \ 
